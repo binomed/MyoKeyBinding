@@ -34,7 +34,7 @@ void Request(int Method, LPCSTR Host, LPCSTR url, LPCSTR header, LPSTR data);
 class DataCollector : public myo::DeviceListener {
 public:
 	DataCollector()
-		: roll_w(0), pitch_w(0), yaw_w(0), roll(0), pitch(0), yaw(0), currentPose(), acc_x(0), acc_z(0), acc_y(0), gyro_x(0), gyro_z(0), gyro_y(0)
+		: roll_w(0), pitch_w(0), yaw_w(0), roll(0), pitch(0), yaw(0), currentPose(), currentMyo(), acc_x(0), acc_z(0), acc_y(0), gyro_x(0), gyro_z(0), gyro_y(0)
 	{
 	}
 	// onOrientationData() is called whenever the Myo device provides its current orientation, which is represented
@@ -63,13 +63,14 @@ public:
 	void onPose(myo::Myo* myo, uint64_t timestamp, myo::Pose pose)
 	{
 		currentPose = pose;
+		currentMyo = myo;
 
 		// Vibrate the Myo whenever we've detected that the user has made a fist.
 		if (pose == myo::Pose::fist) {
-			myo->vibrate(myo::Myo::vibrationMedium);
+			//myo->vibrate(myo::Myo::vibrationMedium);
 		}
-		else if (pose == myo::Pose::thumbToPinky) {
-			myo->vibrate(myo::Myo::vibrationLong);
+		else if (pose == myo::Pose::fingersSpread) {
+			//myo->vibrate(myo::Myo::vibrationLong);
 		}
 	}
 
@@ -109,28 +110,36 @@ public:
 			if (timestampPose == -1){
 				timestampPose = time(NULL);
 			}
-			else if (timeTmp - timestampPose > 1){
+			else if (timeTmp - timestampPose > 0.5){
 				timestampPose = -1;
 				clavier.generateKey(0x25, false);
+				currentMyo->vibrate(myo::Myo::vibrationShort);
 			}
 		}
 		else if (poseString.compare("waveOut") == 0 && geste){
 			if (timestampPose == -1){
 				timestampPose = time(NULL);
 			}
-			else if (timeTmp - timestampPose > 1){
+			else if (timeTmp - timestampPose > 0.5){
 				timestampPose = -1;
 				clavier.generateKey(0x27, false);
+				currentMyo->vibrate(myo::Myo::vibrationShort);
 			}
 		}
-		else if (poseString.compare("thumbToPinky") == 0 && timestamp == -1){
+		else if (poseString.compare("fingersSpread") == 0 &&!geste && timestamp == -1){
+			currentMyo->vibrate(myo::Myo::vibrationLong);
 			geste = true;
 			timestamp = time(NULL);
 			timestampPose = -1;
 		}
-		else if (poseString.compare("thumbToPinky") == 0 && (timeTmp - timestamp > 1)){
-			geste = false;
+		else if (poseString.compare("fingersSpread") == 0 && !geste && (timeTmp -  timestamp > 1)){
+			currentMyo->vibrate(myo::Myo::vibrationLong);
 			timestamp = -1;
+		}
+		
+		else if (poseString.compare("fingersSpread") == 0 && (timeTmp - timestamp > 1)){
+			currentMyo->vibrate(myo::Myo::vibrationLong);
+			geste = false;
 		}
 		else if (poseString.compare("fist") == 0){
 			//timestamp = time(NULL);
@@ -184,6 +193,7 @@ public:
 	int roll_w, pitch_w, yaw_w;
 	float acc_x, acc_y, acc_z, gyro_x, gyro_y, gyro_z, roll, pitch, yaw;
 	myo::Pose currentPose;
+	myo::Myo* currentMyo;
 };
 
 int main(int argc, char** argv)

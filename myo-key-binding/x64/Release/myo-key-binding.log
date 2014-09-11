@@ -1,15 +1,15 @@
-﻿La génération a démarré 11/09/2014 22:51:32.
+﻿La génération a démarré 11/09/2014 23:04:09.
      1>Projet "D:\tools\projects\MyoKeyBinding\myo-key-binding\myo-key-binding.vcxproj" sur le nœud 2 (Build cible(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I.\include /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt "myo-key-binding.cpp"
          myo-key-binding.cpp
-     1>myo-key-binding.cpp(106): warning C4244: 'initialisation' : conversion de 'time_t' en 'unsigned long', perte possible de données
-     1>myo-key-binding.cpp(110): warning C4244: '=' : conversion de 'time_t' en 'unsigned long', perte possible de données
-     1>myo-key-binding.cpp(119): warning C4244: '=' : conversion de 'time_t' en 'unsigned long', perte possible de données
-     1>myo-key-binding.cpp(128): warning C4244: '=' : conversion de 'time_t' en 'unsigned long', perte possible de données
-     1>myo-key-binding.cpp(148): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
-     1>myo-key-binding.cpp(149): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
-     1>myo-key-binding.cpp(150): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+     1>myo-key-binding.cpp(107): warning C4244: 'initialisation' : conversion de 'time_t' en 'unsigned long', perte possible de données
+     1>myo-key-binding.cpp(111): warning C4244: '=' : conversion de 'time_t' en 'unsigned long', perte possible de données
+     1>myo-key-binding.cpp(121): warning C4244: '=' : conversion de 'time_t' en 'unsigned long', perte possible de données
+     1>myo-key-binding.cpp(132): warning C4244: '=' : conversion de 'time_t' en 'unsigned long', perte possible de données
+     1>myo-key-binding.cpp(157): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+     1>myo-key-binding.cpp(158): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+     1>myo-key-binding.cpp(159): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\tools\projects\MyoKeyBinding\myo-key-binding\x64\Release\myo-key-binding.exe" /INCREMENTAL /NOLOGO /LIBPATH:.\lib myo64.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\tools\projects\MyoKeyBinding\myo-key-binding\x64\Release\myo-key-binding.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\tools\projects\MyoKeyBinding\myo-key-binding\x64\Release\myo-key-binding.lib" /MACHINE:X64 x64\Release\clavier.obj
          "x64\Release\myo-key-binding.obj"
@@ -29,4 +29,4 @@
 
 La génération a réussi.
 
-Temps écoulé 00:00:02.85
+Temps écoulé 00:00:02.89
